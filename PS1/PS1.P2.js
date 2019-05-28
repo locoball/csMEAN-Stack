@@ -1,21 +1,51 @@
 //Problem Set 1
 //Problem 2
 
-const expr = '8%3';
-console.log([...expr]);
-console.log([...expr][1]);
+//Takes string expression and returns a function to implement the expression
+const evaluate = expr => returnFun([...expr]);
 
-//const evaluate = expr => (fun())
-
-///HERE const evaluate = expr => fun([...expr])
-
-const fun = function (array) {
- if (array[1] == '%') {return (new Function((array[0], array[2]))}
- else {return 'need to include more cases'}
+const returnFun = function(array) {
+    let op = array[1];
+    if (op == '+') {
+        function a(expr) {
+            return Number([...expr][0]) + Number([...expr][2])
+        }
+        return a;
+    }
+    else if (op == '*') {
+        function b(expr) {
+            return [...expr][0] * [...expr][2]
+        }
+        return b;
+    }
+    else if (op == '-') {
+        function c(expr) {
+            return [...expr][0] - [...expr][2]
+        }
+        return c;
+    }
+    else {
+        function d(expr) {
+            return [...expr][0] / [...expr][2]
+        }
+        return d;
+    }
 }
-const anArray = [1,2,3,4,5,6];
-console.log(anArray);
- console.log([...anArray][0]);
 
+//The expressions
+const plus = '4+2';
+const mult = '5*7';
+const sub = '6-1';
+const div = '9/2';
 
-console.log(fun('8', '%','3'));
+//The operations
+let op1 = evaluate(plus);
+let op2 = evaluate(mult);
+let op3 = evaluate(sub);
+let op4 = evaluate(div);
+
+//Print the implementations of the operations
+console.log(`${plus} = ${op1(plus)}`);
+console.log(`${mult} = ${op2(mult)}`);
+console.log(`${sub} = ${op3(sub)}`);
+console.log(`${div} = ${op4(div)}`);
